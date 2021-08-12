@@ -3,7 +3,7 @@ from .models import Student
 from .serializers import StudentSerializer
 from rest_framework import generics
 
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 # from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 
 # Create your views here.
@@ -16,6 +16,7 @@ def home(request):
 class StudentList(generics.ListCreateAPIView):
     serializer_class = StudentSerializer
     queryset = Student.objects.all()
+    permission_classes = [IsAuthenticated]
 
 class StudentOpr(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = StudentSerializer
